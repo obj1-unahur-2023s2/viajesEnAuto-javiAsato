@@ -1,0 +1,88 @@
+import remiseras.*
+import clientas.*
+import oficina.*
+
+test "Roxana a 10Km" {
+
+	assert.that(roxana.cobrar(ludmila, 10) == 180)
+	assert.equals(roxana.cobrar(anaMaria, 10), 300)
+	assert.that(roxana.cobrar(teresa, 10) == 220)
+
+}
+
+test "Gabriela a 10Km" {
+	
+	assert.that(gabriela.cobrar(ludmila, 10) == 216)
+	assert.equals(gabriela.cobrar(anaMaria, 10), 360)
+	assert.that(gabriela.cobrar(teresa, 10) == 264)
+	
+}
+
+test "Mariela a 10Km" {
+	
+	assert.that(mariela.cobrar(ludmila, 10) == roxana.cobrar(ludmila, 10))
+	assert.equals(mariela.cobrar(anaMaria, 10), roxana.cobrar(anaMaria, 10))
+	assert.that(mariela.cobrar(teresa, 10) == roxana.cobrar(teresa, 10))
+	
+}
+
+test "Juana a 10Km" {
+	
+	assert.that(juana.cobrar(ludmila, 10) == 200)
+	assert.equals(juana.cobrar(anaMaria, 10), 200)
+	assert.that(juana.cobrar(teresa, 10) == 200)
+	
+}
+
+test "Roxana a 2Km" {
+
+	assert.that(roxana.cobrar(ludmila, 2) == 36)
+	assert.equals(roxana.cobrar(anaMaria, 2), 60)
+	assert.that(roxana.cobrar(teresa, 2) == 44)
+
+}
+
+test "Gabriela a 2Km" {
+	
+	assert.that(gabriela.cobrar(ludmila, 2) == 43.20)
+	assert.equals(gabriela.cobrar(anaMaria, 2), 72)
+	assert.that(gabriela.cobrar(teresa, 2) == 52.80)
+	
+}
+
+test "Mariela a 2Km" {
+	
+	assert.that(mariela.cobrar(ludmila, 2) == 50)
+	assert.equals(mariela.cobrar(anaMaria, 2), 60)
+	assert.that(mariela.cobrar(teresa, 2) == 50)
+	
+}
+
+test "Juana a 2Km" {
+	
+	assert.that(juana.cobrar(ludmila, 2) == 100)
+	assert.equals(juana.cobrar(anaMaria, 2), 100)
+	assert.that(juana.cobrar(teresa, 2) == 100)
+	
+}
+
+test "Lucia y Melina" {
+	
+	lucia.reemplazaA(mariela)
+	melina.trabajaPara(ludmila)
+	assert.that(lucia.cobrar(melina, 10) == 150)
+	assert.equals(lucia.cobrar(melina, 1), 50)
+	lucia.reemplazaA(gabriela)
+	assert.that(lucia.cobrar(melina, 10) == 180)
+	assert.equals(lucia.cobrar(melina, 1), 18)
+	
+}
+
+test "Oficina" {
+	
+	oficina.asignarRemiseras(roxana, juana)
+	assert.that(oficina.remiseraElegidaParaElViaje(anaMaria, 10) == juana)
+	assert.equals(oficina.remiseraElegidaParaElViaje(teresa, 10), roxana)
+	assert.that(oficina.remiseraElegidaParaElViaje(teresa, 4) == roxana)
+	
+}
